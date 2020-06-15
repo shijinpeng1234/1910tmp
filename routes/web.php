@@ -14,4 +14,5 @@
 Route::get('/', function () {
     return view('welcome');
 });
-//ceshi
+//测试一下
+Route::get('/test/hello','TestController@hello');

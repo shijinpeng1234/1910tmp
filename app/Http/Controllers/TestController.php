@@ -12,4 +12,8 @@ class TestController extends Controller
         echo '<br>';
         echo date('Y-m-d H:i:s');
     }
+    public function info()
+    {
+        phpinfo();
+    }
 }

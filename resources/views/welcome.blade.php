@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                   Hello 1910
+                   API
                 </div>
 
                 <div class="links">

@@ -18,5 +18,10 @@ Route::get('/', function () {
 Route::get('/test/hello','TestController@hello');
 Route::get('/info','TestController@info');//phpinfo
 
+//注册
+Route::get('/get/user/reg','TestController@reg');
+Route::post('/get/user/regdo','TestController@regdo');
+
+
 //商品
 Route::get('/goods/detail','Goods\GoodsController@detail'); //商品详情

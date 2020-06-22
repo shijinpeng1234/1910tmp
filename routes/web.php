@@ -22,6 +22,12 @@ Route::get('/info','TestController@info');//phpinfo
 Route::get('/get/user/reg','TestController@reg');
 Route::post('/get/user/regdo','TestController@regdo');
 
+//登录
+Route::get('/get/user/login','TestController@login');
+Route::post('/get/user/logindo','TestController@logindo');
+
+//用户中心
+Route::get('/get/user/center','TestController@center');
 
 //商品
 Route::get('/goods/detail','Goods\GoodsController@detail'); //商品详情

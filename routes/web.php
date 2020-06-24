@@ -31,3 +31,8 @@ Route::get('/get/user/center','TestController@center');
 
 //商品
 Route::get('/goods/detail','Goods\GoodsController@detail'); //商品详情
+
+//API
+Route::any('/api/user/reg','Api\UserController@reg');//注册
+Route::any('/api/user/login','Api\UserController@login');//登录
+Route::any('/api/user/center','Api\UserController@center');//个人中心

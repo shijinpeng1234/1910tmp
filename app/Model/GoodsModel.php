@@ -8,4 +8,5 @@ class GoodsModel extends Model
 {
     public $table = 'p_goods';
     protected $primaryKey = 'goods_id';
+    public $timestamps=false;
 }

@@ -9,5 +9,6 @@
 </head>
 <body>
 <h2>用户中心</h2>
+{{$_COOKIE['name']}},欢迎回来
 </body>
 </html>

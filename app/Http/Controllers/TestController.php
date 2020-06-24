@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\UsersModel;
+use Illuminate\Support\Facades\Cookie;
 
 class TestController extends Controller
 {
@@ -87,16 +88,31 @@ class TestController extends Controller
         }else{
             $res2 = password_verify($password,$res->password);
             if($res2){
-                echo "登陆成功";
+                UsersModel::where('user_name','=',$res['user_name'])->update(['last_login'=>time()]);
+//                setcookie('uid',$res->user_id,time()+3600,'/');
+//                setcookie('name',$res->user_name,time()+3600,'/');
+                Cookie::queue('uid2',$res->user_id,10);
+                Cookie::queue('name',$res->user_name,10);
                 header('Refresh:2;url=/get/user/center');
+                echo "登陆成功";
             }else{
-                echo "密码错误，请重试";
                 header('Refresh:2;url=/get/user/login');
+                echo "密码错误，请重试";
             }
         }
     }
     public function center()
     {
-        return view('reg.center');
+        //判断用户是否登录
+//        if(isset($_COOKIE['uid']) && isset($_COOKIE['name'])){
+//            return view('reg.center');
+//        }else{
+//         return redirect('/get/user/login');
+//        }
+        if(Cookie::has('uid2')){
+            return view('reg.center');
+        }else{
+            return redirect('/get/user/login');
+        }
     }
 }

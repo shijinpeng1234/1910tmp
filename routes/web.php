@@ -35,4 +35,6 @@ Route::get('/goods/detail','Goods\GoodsController@detail'); //商品详情
 //API
 Route::any('/api/user/reg','Api\UserController@reg');//注册
 Route::any('/api/user/login','Api\UserController@login');//登录
-Route::any('/api/user/center','Api\UserController@center');//个人中心
+Route::any('/api/user/center','Api\UserController@center')->middleware('check.pri');//个人中心
+Route::any('/api/my/orders','Api\UserController@orders')->middleware('check.pri');//我的订单
+Route::any('/api/my/cart','Api\UserController@cart')->middleware('check.pri','access.filter');//我的购物车

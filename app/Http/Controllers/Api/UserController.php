@@ -134,7 +134,7 @@ class UserController extends Controller
                 $key = $token;
                 Redis::set($key,$res->user_id);
                 //设置token过期时间
-                Redis::expire($token,50);
+                Redis::expire($token,300);
                 $response = [
                   'errno' => 0,
                   'msg'   => '登录成功',
@@ -150,17 +150,29 @@ class UserController extends Controller
         }
     }
     //个人中心
-    public function center()
+    public function center(Request $request)
     {
-        $token = $_GET['token'];
-        //检查token是否有效
-//        $res = TokenModel::where(['token'=>$token])->first();
+        $token = $request->input('token');
         $uid = Redis::get($token);
         if($uid){
             $user_info = UsersModel::find($uid);
             echo $user_info->user_name . "欢迎来到个人中心";
         }else{
-            echo "请登录";
+            $response = [
+                'erron' => '50012',
+                'msg'   => '请先登录'
+            ];
+            return $response;
         }
+    }
+    //我的订单
+    public function orders()
+    {
+       echo "我的订单";
+    }
+    //我的购物车
+    public function cart()
+    {
+        echo '我的购物车';
     }
 }
